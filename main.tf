@@ -41,8 +41,9 @@ resource "null_resource" "app" {
     password = "DevOps321"
     type     = "ssh"
   }
-  provisioner "local-exec" {
-    command = "ansible-pull -U https://github.com/B58-CloudDevOps/ansible.git  -e COMPONENT=${var.name} -e ENV=${var.env} -e PWD=${var.pwd} expense-pull.yml"
+  provisioner "remote-exec" { # This let's the execution to happen on the remote node
+    inline = [
+      "ansible-pull -U https://github.com/B58-CloudDevOps/ansible.git  -e COMPONENT=${var.name} -e ENV=${var.env} -e PWD=${var.pwd} expense-pull.yml"
+    ]
   }
 }
-
