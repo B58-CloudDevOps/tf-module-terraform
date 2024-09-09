@@ -31,7 +31,7 @@ resource "null_resource" "app" {
   }
   provisioner "remote-exec" { # This let's the execution to happen on the remote node
     inline = [
-      # "pip3.11 install hvac",
+      "pip3.11 install hvac",
       "ansible-pull -U https://github.com/B58-CloudDevOps/ansible.git -e vault_token=${vault_token} -e COMPONENT=${var.name} -e ENV=${var.env} expense-pull.yml"
     ]
   }
