@@ -43,7 +43,11 @@ resource "null_resource" "app" {
   }
   provisioner "remote-exec" { # This let's the execution to happen on the remote node
     inline = [
+      "pip3.11 install hvac",
       "ansible-pull -U https://github.com/B58-CloudDevOps/ansible.git  -e COMPONENT=${var.name} -e ENV=${var.env} -e PWD=${var.pwd} expense-pull.yml"
     ]
   }
 }
+
+# hvac:  a pre-req package for hashicorp modules
+# ref: https://docs.ansible.com/ansible/latest/collections/community/hashi_vault/hashi_vault_lookup.html#ansible-collections-community-hashi-vault-hashi-vault-lookup
