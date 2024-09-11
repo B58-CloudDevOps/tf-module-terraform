@@ -1,5 +1,5 @@
 resource "aws_instance" "main" {
-  ami                    = data.aws_ami.main.image_id
+  ami                    = var.ami
   instance_type          = var.instance_type
   vpc_security_group_ids = [aws_security_group.main.id]
 
@@ -10,7 +10,7 @@ resource "aws_instance" "main" {
 
 # Creates DNS Record
 resource "aws_route53_record" "main" {
-  zone_id = data.aws_route53_zone.main.zone_id
+  zone_id = var.zone_id
   name    = "${var.name}-${var.env}.expense.internal"
   type    = "A"
   ttl     = 10
