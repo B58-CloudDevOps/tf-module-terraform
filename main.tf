@@ -9,7 +9,7 @@ resource "aws_instance" "main" {
 
   # We will soon remove this option and this is a workAround
   lifecycle {
-    ignore_changes = ["ami"]
+    ignore_changes = [ami]
   }
 }
 
