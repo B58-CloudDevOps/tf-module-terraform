@@ -6,6 +6,11 @@ resource "aws_instance" "main" {
   tags = {
     Name = "${var.name}-${var.env}"
   }
+
+  # We will soon remove this option and this is a workAround
+  lifecycle {
+    ignore_changes = ["ami"]
+  }
 }
 
 # Creates DNS Record
