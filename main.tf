@@ -21,7 +21,7 @@ resource "null_resource" "app" {
   depends_on = [aws_route53_record.main, aws_instance.main]
 
   triggers = {
-    always_run = true
+    always_run = timestamp()
   }
   connection { # Enables connection to the remote host
     host     = aws_instance.main.private_ip
