@@ -34,3 +34,16 @@ resource "aws_security_group" "main" {
     ipv6_cidr_blocks = ["::/0"]
   }
 }
+
+# This rule is only specific to frontend 
+resource "aws_security_group_rule" "nginx_exporter" {
+  count = var.name == "frontend" ? 1 : 0
+
+  type              = "ingress"
+  from_port         = 9113
+  to_port           = 9133
+  protocol          = "tcp"
+  cidr_blocks       = var.prometheus_node
+  security_group_id = aws_security_group.main.id
+}
+
