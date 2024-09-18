@@ -58,5 +58,3 @@ resource "aws_security_group_rule" "grok_exporter" {
   cidr_blocks       = var.prometheus_node
   security_group_id = aws_security_group.main.id
 }
-
-
