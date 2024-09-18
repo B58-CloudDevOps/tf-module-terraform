@@ -37,7 +37,7 @@ resource "aws_security_group" "main" {
 
 # This rule is only specific to frontend 
 resource "aws_security_group_rule" "nginx_exporter" {
-  count             = var.name == "frontend" ? 1 : 0
+  count             = "${var.name}" == "frontend" ? 1 : 0
   description       = "Nginx Exporter"
   type              = "ingress"
   from_port         = 9113
@@ -49,7 +49,7 @@ resource "aws_security_group_rule" "nginx_exporter" {
 
 # This rule is only specific to frontend 
 resource "aws_security_group_rule" "grok_exporter" {
-  count             = var.name == "frontend" ? 1 : 0
+  count             = "${var.name}" == "frontend" ? 1 : 0
   description       = "Grok Exporter"
   type              = "ingress"
   from_port         = 9144
